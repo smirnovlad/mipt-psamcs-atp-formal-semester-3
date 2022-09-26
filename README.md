@@ -1,1 +1,1 @@
-# mipt-psamc-atp-formal-semester-3
+# mipt-psamcs-atp-formal-semester-3
