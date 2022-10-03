@@ -1,5 +1,5 @@
-#include "output_data.h"
-#include "../../NFA/NFA.h"
+#include "../lib/output_data.h"
+#include "../lib/NFA.h"
 
 void output_data::put_doa_version() {
   fout << "DOA: v1\n";

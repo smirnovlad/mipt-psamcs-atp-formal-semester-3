@@ -1,7 +1,7 @@
-#include "minimal_complete_DFA/minimal_complete_DFA.h"
+#include "lib/minimal_complete_DFA.h"
 
 int main() {
-  NFA NFA;
+  NFA NFA("input.doa");
   NFA.show_finit_automaton("nfa.doa");
 
   one_letter_NFA one_letter_NFA(NFA);

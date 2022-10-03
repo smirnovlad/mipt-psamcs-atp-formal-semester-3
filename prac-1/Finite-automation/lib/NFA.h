@@ -20,15 +20,15 @@ class NFA {
   std::map<std::set<uint32_t>, uint32_t> _set_to_node;
   std::map<uint32_t, std::set<uint32_t>> _node_to_set;
 
-  void get_finite_automaton();
+  void get_finite_automaton(const std::string& input_file_name);
 
   friend class input_data;
   friend class output_data;
 
  public:
-  NFA() {
+  NFA(const std::string& input_file_name) {
     alphabet.insert('#');
-    get_finite_automaton();
+    get_finite_automaton(input_file_name);
   }
 
   NFA(const NFA& other) = default;

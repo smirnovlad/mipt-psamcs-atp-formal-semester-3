@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 2.8)
+project(Finite_automation)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+set (MAIN_SOURCE main.cpp)
+set (MAIN_SOURCE_LIB src/DFA.cpp src/input_data.cpp src/complete_DFA.cpp src/minimal_complete_DFA.cpp
+        src/NFA.cpp src/one_letter_NFA.cpp src/output_data.cpp src/test/test_suite.cpp)
+
+add_library(foo STATIC ${MAIN_SOURCE_LIB})
+add_executable(main ${MAIN_SOURCE})
+target_link_libraries(main foo)
+
+target_include_directories(main PRIVATE ${CMAKE_SOURCE_DIR})
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+set(TEST_SOURCE main_test.cpp)
+set(TEST_SOURCE_LIB src/test/test_suite.cpp)
+
+add_library(test STATIC ${TEST_SOURCE_LIB})
+add_executable(main_test ${TEST_SOURCE})
+target_link_libraries(main_test ${GTEST_LIBRARIES} pthread test)
+
+target_include_directories(main_test PRIVATE ${CMAKE_SOURCE_DIR})

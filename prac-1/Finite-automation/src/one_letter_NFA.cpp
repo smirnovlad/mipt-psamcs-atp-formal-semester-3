@@ -1,4 +1,4 @@
-#include "one_letter_NFA.h"
+#include "../lib/one_letter_NFA.h"
 
 void one_letter_NFA::get_one_letter_finite_automaton() {
   clear_not_reachable_states();

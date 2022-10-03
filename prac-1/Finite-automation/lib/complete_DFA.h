@@ -1,4 +1,4 @@
-#include "../DFA/DFA.h"
+#include "DFA.h"
 
 class complete_DFA : public DFA {
  private:

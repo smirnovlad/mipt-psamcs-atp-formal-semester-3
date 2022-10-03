@@ -1,4 +1,4 @@
-#include "../complete_DFA/complete_DFA.h"
+#include "complete_DFA.h"
 
 class minimal_complete_DFA : public complete_DFA {
  private:

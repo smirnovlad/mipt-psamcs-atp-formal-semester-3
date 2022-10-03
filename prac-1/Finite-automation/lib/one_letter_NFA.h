@@ -1,4 +1,4 @@
-#include "../NFA/NFA.h"
+#include "NFA.h"
 
 class one_letter_NFA : public NFA {
  private:
