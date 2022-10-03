@@ -9,6 +9,11 @@ class complete_DFA : public DFA {
  public:
   complete_DFA() = default;
 
+  complete_DFA(const std::string& input_file_name) :
+      DFA(input_file_name) {
+    add_dummy_state();
+  }
+
   complete_DFA(const DFA& dfa) : DFA(dfa) {
     add_dummy_state();
   }

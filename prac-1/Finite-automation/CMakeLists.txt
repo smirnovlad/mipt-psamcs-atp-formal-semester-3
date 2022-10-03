@@ -29,7 +29,7 @@ set(TEST_SOURCE_LIB test/src/test_nfa.cpp
         test/src/test_complete_dfa.cpp
         test/src/test_minimal_complete_dfa.cpp)
 
-add_library(test STATIC ${TEST_SOURCE_LIB})
+add_library(test STATIC ${TEST_SOURCE_LIB} ${MAIN_SOURCE_LIB})
 add_executable(main_test ${TEST_SOURCE})
 target_link_libraries(main_test ${GTEST_LIBRARIES} pthread test)
 

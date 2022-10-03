@@ -21,6 +21,10 @@ class one_letter_NFA : public NFA {
  public:
   one_letter_NFA() = default;
 
+  one_letter_NFA(const std::string& input_file_name) : NFA(input_file_name) {
+    get_one_letter_finite_automaton();
+  }
+
   one_letter_NFA(const NFA& nfa) : NFA(nfa) {
     get_one_letter_finite_automaton();
   }

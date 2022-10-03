@@ -12,6 +12,11 @@ class DFA : public one_letter_NFA {
  public:
   DFA() = default;
 
+  DFA(const std::string& input_file_name) :
+      one_letter_NFA(input_file_name) {
+    get_deterministic_finite_automaton();
+  }
+
   DFA(const one_letter_NFA& one_letter_nfa) :
       one_letter_NFA(one_letter_nfa) {
     get_deterministic_finite_automaton();
