@@ -1,5 +1,8 @@
 #include "NFA.h"
 
+#ifndef ONE_LETTER_NFA_H_INCLUDED
+#define ONE_LETTER_NFA_H_INCLUDED
+
 class one_letter_NFA : public NFA {
  private:
   void DFS_to_check_reachability(uint32_t state_id, std::vector<bool>& used,
@@ -22,3 +25,5 @@ class one_letter_NFA : public NFA {
     get_one_letter_finite_automaton();
   }
 };
+
+#endif

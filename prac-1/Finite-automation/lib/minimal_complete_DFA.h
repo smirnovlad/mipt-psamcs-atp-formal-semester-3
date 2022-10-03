@@ -1,5 +1,8 @@
 #include "complete_DFA.h"
 
+#ifndef MINIMAL_COMPLETE_DFA_H_INCLUDED
+#define MINIMAL_COMPLETE_DFA_H_INCLUDED
+
 class minimal_complete_DFA : public complete_DFA {
  private:
   void get_equivalence_class(std::vector<uint32_t>& equivalence_class,
@@ -13,3 +16,5 @@ class minimal_complete_DFA : public complete_DFA {
     get_minimal_complete_DFA();
   }
 };
+
+#endif

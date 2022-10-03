@@ -1,5 +1,8 @@
 #include "one_letter_NFA.h"
 
+#ifndef DFA_H_INCLUDED
+#define DFA_H_INCLUDED
+
 class DFA : public one_letter_NFA {
  private:
   void get_set_to_node_values();
@@ -14,3 +17,5 @@ class DFA : public one_letter_NFA {
     get_deterministic_finite_automaton();
   }
 };
+
+#endif

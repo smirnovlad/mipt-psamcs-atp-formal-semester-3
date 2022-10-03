@@ -6,6 +6,8 @@
 #include <map>
 #include <queue>
 
+#ifndef NFA_H_INCLUDED
+#define NFA_H_INCLUDED
 
 class NFA {
  protected:
@@ -35,3 +37,5 @@ class NFA {
 
   void show_finit_automaton(const std::string& output_file_name);
 };
+
+#endif
