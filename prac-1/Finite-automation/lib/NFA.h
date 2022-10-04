@@ -27,6 +27,7 @@ class NFA {
   friend class input_data;
   friend class output_data;
 
+  friend class one_letter_NFA_test;
  public:
   NFA(const std::string& input_file_name) {
     alphabet.insert('#');
