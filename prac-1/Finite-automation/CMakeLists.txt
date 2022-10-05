@@ -1,73 +1,78 @@
-cmake_minimum_required(VERSION 2.8)
-project(Finite_automation)
+cmake_minimum_required(VERSION 3.8)
+project(Testing CXX)
+
+include(ExternalProject)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake)
+
+set(EXTERNAL_INSTALL_LOCATION ${Testing_SOURCE_DIR}/3rdparty)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+find_package(Threads REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Testing_SOURCE_DIR}/bin)
 
-set(OBJECT_DIR ${CMAKE_BINARY_DIR}/CMakeFiles/main_test.dir)
-message("-- Object files will be output to: ${OBJECT_DIR}")
+SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage --coverage")
+SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage --coverage")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+if (APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+endif()
 
-set(MAIN_SOURCE main.cpp)
-set(MAIN_SOURCE_LIB src/NFA.cpp
-        src/one_letter_NFA.cpp
-        src/DFA.cpp
-        src/complete_DFA.cpp
-        src/minimal_complete_DFA.cpp
-        src/input_data.cpp
-        src/output_data.cpp)
+SET(CPR_USE_SYSTEM_GTEST ON)
 
-add_library(MAIN_LIB STATIC ${MAIN_SOURCE_LIB})
-add_executable(main ${MAIN_SOURCE})
-target_link_libraries(main MAIN_LIB)
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG main
+)
 
-target_include_directories(main PRIVATE ${CMAKE_SOURCE_DIR})
+if (APPLE)
 
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1" CACHE INTERNAL "")
+    set(OPENSSL_LIBRARIES "/usr/local/opt/openssl@1.1/lib" CACHE INTERNAL "")
+    FetchContent_Declare(
+            cpr_repo
+            GIT_REPOSITORY https://github.com/libcpr/cpr.git
+    )
+else()
+    FetchContent_Declare(
+            cpr_repo
+            GIT_REPOSITORY https://github.com/libcpr/cpr.git
+    )
+endif()
 
-#set(OBJECT_TEST_DIR ${CMAKE_BINARY_DIR}/CMakeFiles/main_test.dir)
-#message("-- Object testing files will be output to: ${OBJECT_TEST_DIR}")
+FetchContent_MakeAvailable(cpr_repo googletest)
 
-set(TEST_SOURCE main_test.cpp)
-set(TEST_SOURCE_LIB test/src/test_nfa.cpp
-        test/src/test_one_letter_nfa.cpp
-        test/src/test_dfa.cpp
-        test/src/test_complete_dfa.cpp
-        test/src/test_minimal_complete_dfa.cpp)
+include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
+link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
+include_directories(${CPR_INCLUDE_DIRS})
 
-add_library(TEST_LIB STATIC ${TEST_SOURCE_LIB} ${MAIN_SOURCE_LIB})
-add_executable(main_test ${TEST_SOURCE})
-target_link_libraries(main_test ${GTEST_LIBRARIES} pthread TEST_LIB)
 
-target_include_directories(main_test PRIVATE ${CMAKE_SOURCE_DIR})
 
-# Create the gcov target. Run coverage tests with 'make gcov'
-add_custom_target(gcov
-        COMMAND mkdir -p coverage
-        COMMAND ${CMAKE_MAKE_PROGRAM} test
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        )
-add_custom_command(TARGET gcov
-        COMMAND echo "=================== GCOV ===================="
-        COMMAND gcov -b ${CMAKE_SOURCE_DIR}/main_test.cpp -o ${OBJECT_DIR}
-        | grep -A 5 "main_test.cpp" > CoverageSummary.tmp
-        COMMAND echo "-- Coverage files have been output to ${CMAKE_BINARY_DIR}/bin/coverage"
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/coverage  # Need separate command for this line
-        )
-add_dependencies(gcov main_test)
-# Make sure to clean up the coverage folder
-set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES coverage)
+include(CodeCoverage)
+add_custom_target(coverage_report)
 
-# Create the gcov-clean target. This cleans the build as well as generated
-# .gcda and .gcno files.
-add_custom_target(scrub
-        COMMAND ${CMAKE_MAKE_PROGRAM} clean
-        COMMAND rm -f ${OBJECT_DIR}/main_test.gcno
-        COMMAND rm -f ${OBJECT_DIR}/main_test.gcda
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        )
+function(run_coverage test_sources sources coverage_target target_name coverage_name)
+    message("INFO test sources ${test_sources}")
+    set(test_name "${target_name}-test")
+    message("INFO sources ${sources}")
+    add_executable(${test_name} ${test_sources} ${sources})
 
-# Testing
-enable_testing()
-add_test(output_test ${CMAKE_CURRENT_BINARY_DIR}/main_test)
+
+    target_link_libraries(
+            ${test_name} gtest_main gtest gmock Threads::Threads cpr curl
+    )
+
+    setup_target_for_coverage(
+            ${coverage_target} ${target_name} ${test_name} ${coverage_name}
+    )
+
+    add_dependencies(coverage_report ${coverage_target})
+endfunction()
+
+include_directories(lib)
+
+include("BuildApp.txt")
+
+add_subdirectory(tests)

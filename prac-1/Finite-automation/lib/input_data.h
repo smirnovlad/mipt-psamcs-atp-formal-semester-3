@@ -3,6 +3,9 @@
 
 class NFA;
 
+#ifndef INPUT_DATA_H_INCLUDED
+#define INPUT_DATA_H_INCLUDED
+
 class input_data {
  private:
   NFA* FNA;
@@ -20,3 +23,5 @@ class input_data {
 
   void get();
 };
+
+#endif

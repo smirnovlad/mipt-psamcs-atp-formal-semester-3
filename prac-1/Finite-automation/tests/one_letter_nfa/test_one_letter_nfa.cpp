@@ -1,4 +1,4 @@
-#include "../lib/test_one_letter_nfa.h"
+#include "test_one_letter_nfa.h"
 #include "../../lib/one_letter_NFA.h"
 
 bool one_letter_NFA_test::is_transition_length_equal_to_one(

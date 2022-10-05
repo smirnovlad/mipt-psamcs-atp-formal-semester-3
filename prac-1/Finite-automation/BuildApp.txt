@@ -1,0 +1,28 @@
+project(myApp)
+
+set(myApp_source_files
+ "${PROJECT_SOURCE_DIR}/src/NFA.cpp"
+ "${PROJECT_SOURCE_DIR}/src/one_letter_NFA.cpp"
+ "${PROJECT_SOURCE_DIR}/src/DFA.cpp"
+ "${PROJECT_SOURCE_DIR}/src/complete_DFA.cpp"
+ "${PROJECT_SOURCE_DIR}/src/minimal_complete_DFA.cpp"
+ "${PROJECT_SOURCE_DIR}/src/input_data.cpp"
+ "${PROJECT_SOURCE_DIR}/src/output_data.cpp"
+ CACHE INTERNAL "")
+
+add_executable(main main.cpp ${myApp_source_files})
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+#[[set(myApp_test_source_files
+    "${PROJECT_SOURCE_DIR}/tests/src/test_nfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/one_letter_nfa/test_one_letter_nfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/src/test_dfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/src/test_complete_dfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/src/test_minimal_complete_dfa.cpp"
+     CACHE INTERNAL "")
+
+add_library(TEST_LIB STATIC ${myApp_source_files})
+add_executable(main_test main_test.cpp ${myApp_test_source_files})
+target_link_libraries(main_test ${GTEST_LIBRARIES} pthread TEST_LIB) ]]

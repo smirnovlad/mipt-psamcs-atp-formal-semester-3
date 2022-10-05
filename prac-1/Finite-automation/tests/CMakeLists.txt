@@ -1,0 +1,4 @@
+add_subdirectory(one_letter_nfa)
+add_subdirectory(dfa)
+add_subdirectory(complete_dfa)
+add_subdirectory(minimal_complete_dfa)

@@ -3,6 +3,9 @@
 
 class NFA;
 
+#ifndef OUTPUT_DATA_H_INCLUDED
+#define OUTPUT_DATA_H_INCLUDED
+
 class output_data {
  private:
   NFA* FNA;
@@ -19,3 +22,5 @@ class output_data {
 
   void put();
 };
+
+#endif

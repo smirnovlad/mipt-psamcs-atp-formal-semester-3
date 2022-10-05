@@ -9,9 +9,9 @@ class complete_DFA_test : public ::testing::Test {
   std::vector<DFA*> data;
 
   virtual void SetUp() {
-    data.push_back(new DFA("test/test_input_1.doa"));
-    data.push_back(new DFA("test/test_input_2.doa"));
-    data.push_back(new DFA("test/test_input_3.doa"));
+    data.push_back(new DFA("tests/test_input_1.doa"));
+    data.push_back(new DFA("tests/test_input_2.doa"));
+    data.push_back(new DFA("tests/test_input_3.doa"));
   }
 
   virtual void TearDown() {}

@@ -5,6 +5,8 @@
 #include <set>
 #include <map>
 #include <queue>
+#include "input_data.h"
+#include "output_data.h"
 
 #ifndef NFA_H_INCLUDED
 #define NFA_H_INCLUDED

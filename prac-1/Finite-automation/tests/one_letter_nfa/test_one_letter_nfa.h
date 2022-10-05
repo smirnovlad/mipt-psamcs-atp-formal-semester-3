@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include "../../cmake-build-debug/_deps/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../lib/one_letter_NFA.h"
 
 #ifndef TEST_ONE_LETTER_NFA_H
@@ -10,9 +10,9 @@ class one_letter_NFA_test : public ::testing::Test {
 
   virtual void SetUp() {
     // TODO: solve previous path-problem
-    data.push_back(new NFA("test/test_input_1.doa"));
-    data.push_back(new NFA("test/test_input_2.doa"));
-    data.push_back(new NFA("test/test_input_3.doa"));
+    data.push_back(new NFA("tests/test_input_1.doa"));
+    data.push_back(new NFA("tests/test_input_2.doa"));
+    data.push_back(new NFA("tests/test_input_3.doa"));
   }
 
   virtual void TearDown() {}
