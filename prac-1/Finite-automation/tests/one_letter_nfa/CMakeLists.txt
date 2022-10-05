@@ -2,7 +2,12 @@ set(TARGET_NAME "one_letter_nfa")
 set(COVERAGE_NAME "one_letter_nfa_coverage")
 set(COVERAGE_TARGET "one_letter_nfa_coverage_target")
 set(SOURCE_DIR_MAIN "${myApp_SOURCE_DIR}")
-set(SOURCES ${myApp_source_files})
+#set(SOURCES ${myApp_source_files})
+set(SOURCES "${PROJECT_SOURCE_DIR}/src/NFA.cpp"
+        "${PROJECT_SOURCE_DIR}/src/one_letter_NFA.cpp"
+        "${PROJECT_SOURCE_DIR}/src/input_data.cpp"
+        "${PROJECT_SOURCE_DIR}/src/output_data.cpp"
+        )
 
 message(INFO ${SOURCES})
 
