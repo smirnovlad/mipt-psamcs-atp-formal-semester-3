@@ -96,11 +96,45 @@ TEST_F(one_letter_NFA_test, cover_show_function) {
   for (auto ptr: data) {
     NFA& nfa = *ptr;
     one_letter_NFA one_letter_nfa(nfa);
-    one_letter_nfa.show_finit_automaton("foo.doa");
+    one_letter_nfa.show_finit_automaton("test_one_letter.doa");
     EXPECT_EQ(false, false);
   }
 }
 
-TEST_F(one_letter_NFA_test, the_set_of_recognizable) {
+void one_letter_NFA_test::get_set_of_recognizable(
+    std::set<std::string>& set, const NFA& obj,
+    std::string cur_str, uint32_t cur_state_id,
+    uint32_t max_length) {
+  if (cur_str.size() <= max_length) {
+    if (obj._is_finish[cur_state_id]) {
+      set.insert(cur_str);
+    }
+    for (auto& [str, state_set]: obj._gr[cur_state_id]) {
+      for (uint32_t state_id: state_set) {
+        if (str != "#") {
+          get_set_of_recognizable(set, obj, cur_str + str, state_id, max_length);
+        } else {
+          get_set_of_recognizable(set, obj, cur_str, state_id, max_length);
+        }
+      }
+    }
+  }
+}
 
+bool one_letter_NFA_test::are_the_sets_of_recognizable_the_same(
+    const NFA& arg1, const one_letter_NFA& arg2) {
+  uint32_t max_length = 5;
+  std::set<std::string> set1;
+  get_set_of_recognizable(set1, arg1, "", arg1._start_id, max_length);
+  std::set<std::string> set2;
+  get_set_of_recognizable(set2, arg2, "", arg2._start_id, max_length);
+  return (set1 == set2);
+}
+
+TEST_F(one_letter_NFA_test, the_set_of_recognizable) {
+  for (auto ptr: data) {
+    NFA& nfa = *ptr;
+    one_letter_NFA one_letter_nfa(nfa);
+    EXPECT_EQ(true, are_the_sets_of_recognizable_the_same(nfa, one_letter_nfa));
+  }
 }

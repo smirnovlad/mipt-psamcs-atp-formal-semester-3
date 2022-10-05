@@ -72,6 +72,7 @@ void DFA::get_deterministic_finite_automaton() {
   std::map<std::set<uint32_t>, bool> used;
   get_new_sets(used);
   update_gr(used);
+  clear_not_finish_ability_states();
   clear_not_reachable_states();
 }
 

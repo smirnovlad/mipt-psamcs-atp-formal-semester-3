@@ -9,6 +9,8 @@ class DFA : public one_letter_NFA {
   void update_gr(std::map<std::set<uint32_t>, bool>& used);
   void get_new_sets(std::map<std::set<uint32_t>, bool>& used);
   void get_deterministic_finite_automaton();
+
+  friend class complete_DFA_test;
  public:
   DFA() = default;
 

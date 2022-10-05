@@ -15,6 +15,9 @@ class one_letter_NFA : public NFA {
   void get_one_letter_finite_automaton();
   bool DFS_to_remove_eps_transition(uint32_t state_id, std::vector<bool>& used,
                                     Transitions& new_states);
+
+  friend class DFA_test;
+
  protected:
   void clear_not_reachable_states();
   void clear_not_finish_ability_states();

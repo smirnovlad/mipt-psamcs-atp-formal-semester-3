@@ -6,6 +6,8 @@
 class complete_DFA : public DFA {
  private:
   void add_dummy_state();
+
+  friend class minimal_complete_DFA_test;
  public:
   complete_DFA() = default;
 
