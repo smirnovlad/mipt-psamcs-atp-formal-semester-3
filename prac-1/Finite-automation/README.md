@@ -1,11 +1,13 @@
-# To start
+# To start  
 
-$ mkdir build
+## Build project
+$ mkdir build  
+$ cd build  
+$ -DCMAKE_BUILD_TYPE=Debug ..  
+$ make -j   
 
-$ cd build
+## Get coverage-report
+$ make coverage_report -j 
 
-$ -DCMAKE_BUILD_TYPE=Debug ..
-
-$ make -j
-
-$ make coverage_report -j
+## Run gtest
+You need to execute main_test object file.

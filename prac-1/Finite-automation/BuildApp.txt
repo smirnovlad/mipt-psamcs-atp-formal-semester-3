@@ -15,14 +15,14 @@ add_executable(main main.cpp ${myApp_source_files})
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-#[[set(myApp_test_source_files
-    "${PROJECT_SOURCE_DIR}/tests/src/test_nfa.cpp"
+set(myApp_test_source_files
+    "${PROJECT_SOURCE_DIR}/tests/nfa/test_nfa.cpp"
     "${PROJECT_SOURCE_DIR}/tests/one_letter_nfa/test_one_letter_nfa.cpp"
-    "${PROJECT_SOURCE_DIR}/tests/src/test_dfa.cpp"
-    "${PROJECT_SOURCE_DIR}/tests/src/test_complete_dfa.cpp"
-    "${PROJECT_SOURCE_DIR}/tests/src/test_minimal_complete_dfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/dfa/test_dfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/complete_dfa/test_complete_dfa.cpp"
+    "${PROJECT_SOURCE_DIR}/tests/minimal_complete_dfa/test_minimal_complete_dfa.cpp"
      CACHE INTERNAL "")
 
 add_library(TEST_LIB STATIC ${myApp_source_files})
 add_executable(main_test main_test.cpp ${myApp_test_source_files})
-target_link_libraries(main_test ${GTEST_LIBRARIES} pthread TEST_LIB) ]]
+target_link_libraries(main_test ${GTEST_LIBRARIES} pthread TEST_LIB)
