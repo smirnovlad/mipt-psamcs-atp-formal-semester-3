@@ -3,7 +3,7 @@
 ## Build project
 $ mkdir build  
 $ cd build  
-$ -DCMAKE_BUILD_TYPE=Debug ..  
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..  
 $ make -j   
 
 ## Get coverage-report
