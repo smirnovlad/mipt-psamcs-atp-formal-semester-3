@@ -1,4 +1,4 @@
-#include "lib/minimal_complete_DFA.h"
+#include "minimal_complete_DFA.h"
 
 int main() {
   NFA NFA("input.doa");

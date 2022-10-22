@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../../lib/minimal_complete_DFA.h"
+#include "minimal_complete_DFA.h"
 
 class minimal_complete_DFA_test : public ::testing::Test {
  protected:

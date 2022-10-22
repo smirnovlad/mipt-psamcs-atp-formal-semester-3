@@ -1,4 +1,4 @@
-#include "../lib/complete_DFA.h"
+#include "complete_DFA.h"
 
 void complete_DFA::add_dummy_state() {
   uint32_t dummy_state_id = _state_cnt + 1;

@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../../lib/NFA.h"
+#include "NFA.h"
 
 #ifndef INCLUDED_NFA_H
 #define INCLUDED_NFA_H

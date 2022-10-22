@@ -1,4 +1,4 @@
-#include "../lib/minimal_complete_DFA.h"
+#include "minimal_complete_DFA.h"
 
 void minimal_complete_DFA::get_equivalence_class(
     std::vector<uint32_t>& equivalence_class,

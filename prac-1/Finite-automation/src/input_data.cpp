@@ -1,5 +1,5 @@
-#include "../lib/input_data.h"
-#include "../lib/NFA.h"
+#include "input_data.h"
+#include "NFA.h"
 
 std::string input_data::get_doa_version() {
   std::string line;
@@ -67,7 +67,6 @@ void input_data::get_transitions() {
 }
 
 void input_data::get() {
-  // TODO: think about that problem
   std::string path_to_input_file = "../" + input_file_name;
   fin.open(path_to_input_file);
   std::string DOA = get_doa_version();

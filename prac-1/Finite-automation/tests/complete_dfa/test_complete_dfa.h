@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../../lib/complete_DFA.h"
+#include "complete_DFA.h"
 
 #ifndef TEST_COMPLETED_DFA_H
 #define TEST_COMPLETED_DFA_H

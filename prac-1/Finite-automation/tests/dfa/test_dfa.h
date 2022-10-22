@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../../lib/DFA.h"
+#include "DFA.h"
 
 #ifndef TEST_DFA_H
 #define TEST_DFA_H

@@ -1,5 +1,5 @@
 #include "test_minimal_complete_dfa.h"
-#include "../../lib/minimal_complete_DFA.h"
+#include "minimal_complete_DFA.h"
 
 bool minimal_complete_DFA_test::is_transition_length_equal_to_one(
     const minimal_complete_DFA& obj) {

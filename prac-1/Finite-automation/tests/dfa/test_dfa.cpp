@@ -1,5 +1,5 @@
 #include "test_dfa.h"
-#include "../../lib/DFA.h"
+#include "DFA.h"
 
 bool DFA_test::is_transition_length_equal_to_one(
     const DFA& obj) {

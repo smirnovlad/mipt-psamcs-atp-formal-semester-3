@@ -1,5 +1,5 @@
-#include "../../cmake-build-debug/_deps/googletest-src/googletest/include/gtest/gtest.h"
-#include "../../lib/one_letter_NFA.h"
+#include "gtest/gtest.h"
+#include "one_letter_NFA.h"
 
 #ifndef TEST_ONE_LETTER_NFA_H
 #define TEST_ONE_LETTER_NFA_H

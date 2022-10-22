@@ -1,4 +1,4 @@
-#include "../lib/DFA.h"
+#include "DFA.h"
 
 void DFA::get_set_to_node_values() {
   for (uint32_t state_id = 1; state_id <= _state_cnt; ++state_id) {
