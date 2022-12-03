@@ -1,0 +1,20 @@
+project(myApp)
+
+set(myApp_source_files
+ "${PROJECT_SOURCE_DIR}/src/CYK.cpp"
+ "${PROJECT_SOURCE_DIR}/src/inputData.cpp"
+ "${PROJECT_SOURCE_DIR}/src/outputData.cpp"
+ CACHE INTERNAL "")
+
+add_executable(main main.cpp ${myApp_source_files})
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+set(myApp_test_source_files
+    "${PROJECT_SOURCE_DIR}/tests/CYK/testCYK.cpp"
+     CACHE INTERNAL "")
+
+add_library(TEST_LIB STATIC ${myApp_source_files})
+add_executable(mainTest mainTest.cpp ${myApp_test_source_files})
+target_link_libraries(mainTest ${GTEST_LIBRARIES} pthread TEST_LIB)
